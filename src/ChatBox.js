@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import React from "react";
 
 import { useState } from "react";
@@ -9,8 +8,8 @@ function ChatBot() {
   const [loading, setLoading] = useState(false);
 
   const searchQuery = async () => {
-    if (search.trim() === "") return; // Prevent empty searches
-    setLoading(true); // Set loading to true when search starts
+    if (search.trim() === "") return;
+    setLoading(true);
 
     const apiUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(
       search
@@ -27,12 +26,12 @@ function ChatBot() {
 
       const data = await response.json();
 
-      setResults(data); // Set the results to the response data
+      setResults(data);
     } catch (error) {
       console.error("Error fetching DuckDuckGo response:", error);
-      setResults(null); // Clear results on error
+      setResults(null);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
       setSearch("");
     }
   };
@@ -40,7 +39,6 @@ function ChatBot() {
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center my-8">
       <div className="bg-slate-300 h-80 w-2/4 p-5 overflow-auto rounded-xl my-7">
-        {/* Display loading state or results */}
         {loading ? (
           <p>Loading...</p>
         ) : results ? (
@@ -82,12 +80,12 @@ function ChatBot() {
             placeholder="Search For something"
             className="h-12 w-96 rounded-xl p-2"
             value={search}
-            onChange={(e) => setSearch(e.target.value)} // Update search term
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button
             className="bg-stone-400 w-24 h-10 rounded-xl"
-            onClick={searchQuery} // Trigger search on button click
-            disabled={loading} // Disable button while loading
+            onClick={searchQuery}
+            disabled={loading}
           >
             {loading ? "Searching..." : "Search"}
           </button>
